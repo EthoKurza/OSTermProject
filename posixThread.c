@@ -19,17 +19,17 @@ int main(int argc, char *argv[]) {
 	
 	
 	/* 2. Initialize buffer */
-	buffer item buffer[BUFFER SIZE];
+	buffer item_buffer[BUFFER SIZE];
 
 	//insert item into buffer 
-	int inser item (buffer item item) {
+	int insert_item (buffer item item) {
 		/* inser item into buffer 
 		return 0 if successful, otherwise
 		return -1 indicating an error condition */
 	}
 
 	//remove item from buffer
-	int remove item(buffer item *item) {
+	int remove_item(buffer item *item) {
 		/* remove an object from buffer 
 		placing it in item
 		return 0 if successful, otherwise

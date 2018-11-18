@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "buffer.h"
 
+//declare functions
 int insert_item(buffer item);
 int remove_item(buffer item);
 
@@ -43,8 +44,6 @@ int main(int argc, char *argv[]) {
 		printf("not enough arguments entered \n");
 		exit(0);
 	}
-	
-	//declare and inititalize variables
 
 	/* 1. Get command line arguments  argv[1],argv[2],argv[3] */
 	int sleepLength = atoi(argv[1]);

@@ -6,6 +6,7 @@ int main(int argc, char *argv[]) {
 	//Check if enough arguments are entered
 	if (argc < 4){
 		printf("not enough arguments entered \n");
+		exit(0);
 	}
 	
 	//declare and inititalize variables

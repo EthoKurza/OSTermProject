@@ -7,8 +7,15 @@ int main(int argc, char *argv[]) {
 	if (argc < 4){
 		printf("not enough arguments entered \n");
 	}
+	
+	//declare and inititalize variables
+	int sleepLength=0, producerNum=0, consumerLength=0
+	
+	sleepLength = atoi(argv[1]);
+	producerNum = atoi(argv[2]);
+	consumerLength = atoi(argv[3]);
 	/* 1. Get command line arguments  argv[1],argv[2],argv[3] */
-
+	
 	/* 2. Initialize buffer */
 	buffer item buffer[BUFFER SIZE];
 

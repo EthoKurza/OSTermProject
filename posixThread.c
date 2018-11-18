@@ -10,11 +10,12 @@ int main(int argc, char *argv[]) {
 	
 	//declare and inititalize variables
 	int sleepLength=0, producerNum=0, consumerLength=0
-	
+
+	/* 1. Get command line arguments  argv[1],argv[2],argv[3] */
 	sleepLength = atoi(argv[1]);
 	producerNum = atoi(argv[2]);
 	consumerLength = atoi(argv[3]);
-	/* 1. Get command line arguments  argv[1],argv[2],argv[3] */
+	
 	
 	/* 2. Initialize buffer */
 	buffer item buffer[BUFFER SIZE];

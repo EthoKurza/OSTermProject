@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "buffer.h"
+#include <pthread.h>
 
 //declare functions
 int insert_item(buffer item);

@@ -3,13 +3,14 @@
 #include <pthread.h>
 
 //declare variables
-buffer item_buffer
+buffer_item buffer[BUFFER_SIZE];
+
 //declare functions
-int insert_item(buffer item item);
-int remove_item(buffer item *item);
+int insert_item(buffer_item item);
+int remove_item(buffer_item *item);
 
 void *producer(void *param){	
-	buffer item item;
+	buffer_item item;
  	while (true) {
  		//sleep for a random period of time
  		sleep(...);
@@ -23,8 +24,8 @@ void *producer(void *param){
 }
 
 void *consumer(void *param){
-	/*
-	buffer item item;
+	
+	buffer_item item;
 
  	while (true) {
  	//sleep for a random period of time
@@ -34,7 +35,7 @@ void *consumer(void *param){
  	else
  		printf("consumer consumed %d\n",item);
  	}
-	*/
+	
 }
 
 int main(int argc, char *argv[]) {
@@ -52,7 +53,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	/* 2. Initialize buffer */
-	buffer item_buffer[BUFFER SIZE];
+	buffer = {0}
 	
 	pthread_t tid;
 	
@@ -83,11 +84,13 @@ int insert_item (buffer item item) {
 }
 
 //remove item from buffer
-int remove_item(buffer item *item) {
+int remove_item(buffer_item *item) {
 	/* remove an object from buffer 
 	placing it in item
 	return 0 if successful, otherwise
 	return -1 indicating an error condition */
+	int i;
+	for(i=0; i < 
 }
 
 /*

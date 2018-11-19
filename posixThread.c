@@ -85,9 +85,9 @@ int main(int argc, char *argv[]) {
 //insert item into buffer 
 int insert_item (buffer_item item) {
 	//check if buffer is full
-	if(currBufferSize < BUFFER_SIZE){
-		buffer[currBufferSize] = item;	//add item since buffer isnt full
-		currBufferSize++;
+	if(curBufferSize < BUFFER_SIZE){
+		buffer[curBufferSize] = item;	//add item since buffer isnt full
+		curBufferSize++;
 		return 0;	//item was succesfully added to the buffer
 	}
 	else{
@@ -103,7 +103,7 @@ int remove_item(buffer_item *item) {
 	*item = tempItem;
 	
 	//Check if buffer is empty
-	if(currBufferSize > 0){
+	if(curBufferSize > 0){
 		for(i = 0 ; i < arrSize; i++){
 			buffer[i]=buffer[i+1];	//shift every item in the buffer to the front. 
 						//(overwrites the item in the front, deleting it)

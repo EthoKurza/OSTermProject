@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include "buffer.h"
 #include <pthread.h>
-
+#define BUFFER_SIZE 5
 //declare variables
 buffer_item buffer[BUFFER_SIZE];
+int curBufferSize = 0;//current buffer size
 
 //declare functions
 int insert_item(buffer_item item);
@@ -16,7 +17,7 @@ void *producer(void *param){
  		sleep(...);
  		//generate a random number
  		item = rand();
- 		if (insert item(item)==(-1))
+ 		if (insert item(item))
  			fprintf("report error condition");
  		else
  			printf("producer produced %d\n",item);
@@ -53,7 +54,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	/* 2. Initialize buffer */
-	buffer = {0}
+	buffer[BUFFER_SIZE] = { 0 } 
 	
 	pthread_t tid;
 	
@@ -76,22 +77,40 @@ int main(int argc, char *argv[]) {
 }//end of main
 
 //insert item into buffer 
-int insert_item (buffer item item) {
+int insert_item (buffer_item item) {
 	/* insert item into buffer 
 	return 0 if successful, otherwise
 	return -1 indicating an error condition */
+	//check if buffer is full
+	if(currBufferSize < BUFFER_SIZE){
+		buffer[currBufferSize] = item;	//add item since buffer isnt full
+		return 0;
+	}
+	else{
+		return -1;	//buffer is full 
+	}
+	
 	
 }
 
 //remove item from buffer
 int remove_item(buffer_item *item) {
-	/* remove an object from buffer 
-	placing it in item
-	return 0 if successful, otherwise
-	return -1 indicating an error condition */
-	int i;
-	for(i=0; i < 
-}
+	//declare variables
+	int i, tempItem = buffer[0], arrSize=sizeof(buffer);
+	*item = tempItem;
+	
+	if(*item == buffer[i]){
+		for(i = 0 ; i < arrSize; i++){
+			buffer[i]=buffer[i+1];
+		}//end of for loop
+	curBufferSize--;
+	return 0;
+	}//end of if statement
+	else{
+		return -1;
+	}
+
+}//end of function remove_item
 
 /*
 	Regular errors should be printed to stderr() by means of fprintf(). The choice of when to terminate the program on specific errors is left to you.

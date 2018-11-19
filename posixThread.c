@@ -76,19 +76,21 @@ int main(int argc, char *argv[]) {
 	return 0;
 }//end of main
 
+
+//functions/methods
+
 //insert item into buffer 
 int insert_item (buffer_item item) {
 	//check if buffer is full
 	if(currBufferSize < BUFFER_SIZE){
 		buffer[currBufferSize] = item;	//add item since buffer isnt full
-		return 0;
+		return 0;	//item was succesfully added to the buffer
 	}
 	else{
-		return -1;	//buffer is full 
+		return -1;	//buffer is full, therefore the item wasn't added to the buffer
 	}
 	
-	
-}
+}//end of insert_item function
 
 //remove item from buffer
 int remove_item(buffer_item *item) {
@@ -96,16 +98,17 @@ int remove_item(buffer_item *item) {
 	int i, tempItem = buffer[0], arrSize=sizeof(buffer);
 	*item = tempItem;
 	
+	//find the first value of the buffer and remove the item
 	if(*item == buffer[i]){
 		for(i = 0 ; i < arrSize; i++){
 			buffer[i]=buffer[i+1];
 		}//end of for loop
-	curBufferSize--;
-	return 0;
+	curBufferSize--;	//since an item was removed , the buffer size should decrease
+	return 0;		//item was successful removed
 	}//end of if statement
 	else{
-		return -1;
-	}
+		return -1;	//item was not removed
+	}//end of else state ment
 
 }//end of function remove_item
 

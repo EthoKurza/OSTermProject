@@ -15,7 +15,8 @@ void *producer(void *param){
 	buffer_item item;
  	while (true) {
  		//sleep for a random period of time
- 		sleep(...);
+		int randTimeP = rand();
+ 		sleep(randTimeP);
  		//generate a random number
  		item = rand();
  		if (insert item(item))
@@ -30,12 +31,13 @@ void *consumer(void *param){
 	buffer_item item;
 
  	while (true) {
- 	//sleep for a random period of time
- 	sleep(...);
- 	if (remove item(&item))
- 		fprintf("report error condition");
- 	else
- 		printf("consumer consumed %d\n",item);
+ 		//sleep for a random period of time
+		int randTimeC = rand();
+ 		sleep(randTimeC);
+ 		if (remove item(&item))
+ 			fprintf("report error condition");
+ 		else
+ 			printf("consumer consumed %d\n",item);
  	}
 	
 }

@@ -2,25 +2,24 @@
 #include "buffer.h"
 #include <pthread.h>
 
+//declare variables
+buffer item_buffer
 //declare functions
-int insert_item(buffer item);
-int remove_item(buffer item);
+int insert_item(buffer item item);
+int remove_item(buffer item *item);
 
-void *producer(void *param){
-	/*
+void *producer(void *param){	
 	buffer item item;
-
  	while (true) {
  		//sleep for a random period of time
  		sleep(...);
  		//generate a random number
  		item = rand();
- 		if (insert item(item))
+ 		if (insert item(item)==(-1))
  			fprintf("report error condition");
  		else
  			printf("producer produced %d\n",item);
- 	}
-	*/
+ 	}	
 }
 
 void *consumer(void *param){
@@ -60,6 +59,7 @@ int main(int argc, char *argv[]) {
 	/* 3. Create producer thread(s) */
 	for(int i = 0; i > producerNum; i++){
 		pthread_create(&tid, NULL, producer, NULL);
+		
 	}
 
 	/* 4. Create consumer thread(s) */
@@ -79,6 +79,7 @@ int insert_item (buffer item item) {
 	/* insert item into buffer 
 	return 0 if successful, otherwise
 	return -1 indicating an error condition */
+	
 }
 
 //remove item from buffer

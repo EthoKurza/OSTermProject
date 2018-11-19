@@ -20,7 +20,7 @@ void *producer(void *param){
  		//generate a random number
  		item = rand();
  		if (insert_item(item))
- 			fprintf("report error condition");
+ 			fprintf("Error, item already produced");
  		else
  			printf("producer produced %d\n",item);
  	}	
@@ -35,7 +35,7 @@ void *consumer(void *param){
 		int randTimeC = rand();
  		sleep(randTimeC);
  		if (remove_item(&item))
- 			fprintf("report error condition");
+ 			fprintf("Error, can not consume");
  		else
  			printf("consumer consumed %d\n",item);
  	}

@@ -2,7 +2,8 @@
 #include "buffer.h"
 #include <pthread.h>
 #define BUFFER_SIZE 5
-//declare variables
+
+//declare global variables
 buffer_item buffer[BUFFER_SIZE];
 int curBufferSize = 0;//current buffer size
 
@@ -84,6 +85,7 @@ int insert_item (buffer_item item) {
 	//check if buffer is full
 	if(currBufferSize < BUFFER_SIZE){
 		buffer[currBufferSize] = item;	//add item since buffer isnt full
+		currBufferSize++;
 		return 0;	//item was succesfully added to the buffer
 	}
 	else{

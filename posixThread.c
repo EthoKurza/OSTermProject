@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "buffer.h"
 #include <pthread.h>
 #define BUFFER_SIZE 5
@@ -13,14 +14,14 @@ int remove_item(buffer_item *item);
 
 void *producer(void *param){	
 	buffer_item item;
- 	while (true) {
+ 	while (1) {
  		//sleep for a random period of time
 		int randTimeP = rand();
  		sleep(randTimeP);
  		//generate a random number
  		item = rand();
  		if (insert_item(item))
- 			fprintf("Error, buffer was unable to insert");
+ 			printf("Error, buffer was unable to insert");
  		else
  			printf("producer produced %d\n",item);
  	}	
@@ -30,12 +31,12 @@ void *consumer(void *param){
 	
 	buffer_item item;
 
- 	while (true) {
+ 	while (1) {
  		//sleep for a random period of time
 		int randTimeC = rand();
  		sleep(randTimeC);
  		if (remove_item(&item))
- 			fprintf("Error, buffer was unable to remove");
+ 			printf("Error, buffer was unable to remove");
  		else
  			printf("consumer consumed %d\n",item);
  	}
@@ -57,18 +58,19 @@ int main(int argc, char *argv[]) {
 	
 	
 	/* 2. Initialize buffer */
-	buffer[BUFFER_SIZE] = { 0 } 
+	//buffer_item buffer[BUFFER_SIZE] = { 0 }; //already declared and initialized above
 	
 	pthread_t tid;
 	
 	/* 3. Create producer thread(s) */
-	for(int i = 0; i > producerNum; i++){
+	int i;
+	for(i = 0; i > producerNum; i++){
 		pthread_create(&tid, NULL, producer, NULL);
 		
 	}
 
 	/* 4. Create consumer thread(s) */
-	for(int i = 0; i > consumerNum; i++){
+	for(i = 0; i > consumerNum; i++){
 		pthread_create(&tid, NULL, consumer, NULL);
 	}
 

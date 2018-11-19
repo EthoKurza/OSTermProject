@@ -98,10 +98,11 @@ int remove_item(buffer_item *item) {
 	int i, tempItem = buffer[0], arrSize=sizeof(buffer);
 	*item = tempItem;
 	
-	//find the first value of the buffer and remove the item
-	if(*item == buffer[i]){
+	//Check if buffer is empty
+	if(currBufferSize > 0){
 		for(i = 0 ; i < arrSize; i++){
-			buffer[i]=buffer[i+1];
+			buffer[i]=buffer[i+1];	//shift every item in the buffer to the front. 
+						//(overwrites the item in the front, deleting it)
 		}//end of for loop
 	curBufferSize--;	//since an item was removed , the buffer size should decrease
 	return 0;		//item was successful removed

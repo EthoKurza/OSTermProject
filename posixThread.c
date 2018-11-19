@@ -19,7 +19,7 @@ void *producer(void *param){
  		sleep(randTimeP);
  		//generate a random number
  		item = rand();
- 		if (insert item(item))
+ 		if (insert_item(item))
  			fprintf("report error condition");
  		else
  			printf("producer produced %d\n",item);
@@ -34,7 +34,7 @@ void *consumer(void *param){
  		//sleep for a random period of time
 		int randTimeC = rand();
  		sleep(randTimeC);
- 		if (remove item(&item))
+ 		if (remove_item(&item))
  			fprintf("report error condition");
  		else
  			printf("consumer consumed %d\n",item);

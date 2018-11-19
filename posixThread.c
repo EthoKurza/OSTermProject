@@ -60,7 +60,8 @@ int main(int argc, char *argv[]) {
 	/* 2. Initialize buffer */
 	//buffer_item buffer[BUFFER_SIZE] = { 0 }; //already declared and initialized above
 	
-	pthread_t tid;
+	pthread_t tid[producerNum];
+	pthread_t tid2[consumerNum];
 	
 	/* 3. Create producer thread(s) */
 	int i;
@@ -71,7 +72,7 @@ int main(int argc, char *argv[]) {
 
 	/* 4. Create consumer thread(s) */
 	for(i = 0; i > consumerNum; i++){
-		pthread_create(&tid, NULL, consumer, NULL);
+		pthread_create(&tid2, NULL, consumer, NULL);
 	}
 
 	/* 5. Sleep */

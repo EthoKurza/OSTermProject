@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "buffer.h"
 #include <pthread.h>
-#define BUFFER_SIZE 5
 
 //declare global variables
 buffer_item buffer[BUFFER_SIZE];
@@ -16,27 +15,23 @@ void *producer(void *param){
 	buffer_item item;
  	while (1) {
  		//sleep for a random period of time
-		int randTimeP = rand();
- 		sleep(randTimeP);
- 		//generate a random number
+ 		sleep(rand() % 5 + 1);	//prevents it from sleeping for too long
  		item = rand();
  		if (insert_item(item))
- 			printf("Error, buffer was unable to insert");
+ 			printf("Error, buffer was unable to insert\n");
  		else
  			printf("producer produced %d\n",item);
  	}	
 }
 
 void *consumer(void *param){
-	
 	buffer_item item;
-
+	
  	while (1) {
  		//sleep for a random period of time
-		int randTimeC = rand();
- 		sleep(randTimeC);
+ 		sleep(rand() % 5 + 1);	//prevents it from sleeping for too long
  		if (remove_item(&item))
- 			printf("Error, buffer was unable to remove");
+ 			printf("Error, buffer was unable to remove\n");
  		else
  			printf("consumer consumed %d\n",item);
  	}
@@ -59,20 +54,19 @@ int main(int argc, char *argv[]) {
 	
 	/* 2. Initialize buffer */
 	//buffer_item buffer[BUFFER_SIZE] = { 0 }; //already declared and initialized above
-	
+	curBufferSize = 0;
 	pthread_t tid[producerNum];
 	pthread_t tid2[consumerNum];
 	
 	/* 3. Create producer thread(s) */
 	int i;
-	for(i = 0; i > producerNum; i++){
-		pthread_create(&tid, NULL, producer, NULL);
-		
+	for(i = 0; i < producerNum; i++){
+		pthread_create(&tid[i], NULL, producer, NULL);
 	}
 
 	/* 4. Create consumer thread(s) */
-	for(i = 0; i > consumerNum; i++){
-		pthread_create(&tid2, NULL, consumer, NULL);
+	for(i = 0; i < consumerNum; i++){
+		pthread_create(&tid2[i], NULL, consumer, NULL);
 	}
 
 	/* 5. Sleep */
@@ -88,7 +82,7 @@ int main(int argc, char *argv[]) {
 //insert item into buffer 
 int insert_item (buffer_item item) {
 	//check if buffer is full
-	if(curBufferSize < BUFFER_SIZE){
+	if(curBufferSize != BUFFER_SIZE){
 		buffer[curBufferSize] = item;	//add item since buffer isnt full
 		curBufferSize++;
 		return 0;	//item was succesfully added to the buffer
@@ -102,17 +96,13 @@ int insert_item (buffer_item item) {
 //remove item from buffer
 int remove_item(buffer_item *item) {
 	//declare variables
-	int i, tempItem = buffer[0], arrSize=sizeof(buffer);
-	*item = tempItem;
-	
+	int tempItem = buffer[0];
+
 	//Check if buffer is empty
-	if(curBufferSize > 0){
-		for(i = 0 ; i < arrSize; i++){
-			buffer[i]=buffer[i+1];	//shift every item in the buffer to the front. 
-						//(overwrites the item in the front, deleting it)
-		}//end of for loop
-	curBufferSize--;	//since an item was removed , the buffer size should decrease
-	return 0;		//item was successful removed
+	if(curBufferSize != 0){
+		*item = tempItem;
+		curBufferSize--;	//since an item was removed , the buffer size should decrease
+		return 0;		//item was successful removed
 	}//end of if statement
 	else{
 		return -1;	//item was not removed
@@ -120,8 +110,4 @@ int remove_item(buffer_item *item) {
 
 }//end of function remove_item
 
-/*
-	Regular errors should be printed to stderr() by means of fprintf(). The choice of when to terminate the program on specific errors is left to you.
-	
-	Failed system calls should use the perror() function for reporting error messages.
-*/
+

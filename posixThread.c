@@ -78,9 +78,6 @@ int main(int argc, char *argv[]) {
 
 //insert item into buffer 
 int insert_item (buffer_item item) {
-	/* insert item into buffer 
-	return 0 if successful, otherwise
-	return -1 indicating an error condition */
 	//check if buffer is full
 	if(currBufferSize < BUFFER_SIZE){
 		buffer[currBufferSize] = item;	//add item since buffer isnt full
